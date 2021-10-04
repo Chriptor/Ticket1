@@ -12,6 +12,8 @@ app.use(cors());
 app.set('view engine','ejs');
 app.set('views', __dirname + '/view');
 app.use(express.static(__dirname + "/public"));
+app.use(bodyparser.urlencoded({ extended: false }));
+app.use(bodyparser.json());
 
 const uriMongo = `mongodb+srv://${process.env.DB_USR}:${process.env.DB_PASS}@cluster0.q8rfj.mongodb.net/${process.env.DB_DB}?retryWrites=true&w=majority`
 
