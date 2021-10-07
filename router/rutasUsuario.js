@@ -21,13 +21,13 @@ const schemaLogin = Joi.object({
 router.post('/login', async (req, res) => {
 
     const { error } = schemaLogin.validate(req.body);
-    if (error) return res.status(400).json({ error: error.details[0].message })
+    if (error) return res.render("index",{ error: error.details[0].message })
     
     const user = await User.findOne({ email: req.body.email });
-    if (!user) return res.status(400).json({ error: 'Usuario o Contraseña invalido' });
+    if (!user) return res.render("index",{Invalido: "Usuario o Contraseña invalido"})
 
     const validPassword = await bcrypt.compare(req.body.password, user.password);
-    if (!validPassword) return res.status(400).json({ error: 'Usuario o Contraseña invalido' })
+    if (!validPassword) return res.render("index",{Invalido: "Usuario o Contraseña invalido"})
     
     const token = jwt.sign({
         id: user._id,
@@ -38,6 +38,7 @@ router.post('/login', async (req, res) => {
         error: null,
         data: {token}
     })
+    
 })
 
 module.exports = router;

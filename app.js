@@ -42,9 +42,7 @@ app.use('/', rutasUsuario )
 app.get('/', (req, res) => {
     res.render("index")
 })
-app.get('/Ofertas', (req, res) => {
-    res.render("Ofertas")
-})
+
 // app.use((req, res, next) => {
 //     res.status(404).render("404")
 // })
