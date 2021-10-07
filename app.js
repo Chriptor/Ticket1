@@ -45,12 +45,9 @@ app.get('/', (req, res) => {
 app.get('/Ofertas', (req, res) => {
     res.render("Ofertas")
 })
-app.get('/LogIn', (req, res) => {
-    res.render("LogIn")
-})
-app.use((req, res, next) => {
-    res.status(404).render("404")
-})
+// app.use((req, res, next) => {
+//     res.status(404).render("404")
+// })
 //Iniciamos vistas
 
 
