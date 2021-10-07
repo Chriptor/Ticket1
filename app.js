@@ -3,6 +3,7 @@ const cors = require('cors');
 require('dotenv').config();
 const mongoose = require('mongoose');
 const bodyparser = require('body-parser'); 
+const rutasUsuario = require('./router/rutasUsuario')
 
 const app = express();
 
@@ -35,6 +36,8 @@ async function serverStart() {
 }
 
 serverStart();
+
+app.use('/', rutasUsuario )
 
 app.get('/', (req, res) => {
     res.render("index")
