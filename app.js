@@ -45,7 +45,7 @@ app.get('/', (req, res) => {
     res.render("index",{Invalido:"", error:""})
 })
 app.get('/dashboard',verificaToken,  (req, res) => {
-    res.render("dashboard")
+    res.render("dashboard",{TituloW:"Dashboard"})
 })
 
 

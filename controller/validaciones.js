@@ -3,15 +3,16 @@ const Joi = require('@hapi/joi');
 
 const verificaToken = (req, res, next) => {
     const token = req.header('auth-token')
+    console.log(token)
     if(!token) {
-        return res.render("404", {error: 'Acceso Denegado'})
+        return res.render("404", {error: 'Acceso Denegado', TituloW:"Error"})
     }
     try {
         const verificar = jwt.verify(token, process.env.SECRET_TOKEN)
         req.user = verified
         next()
     } catch (error) {
-        res.render("404", {error: 'Token invalido'})
+        res.render("404", {error: 'Token invalido', TituloW:"Error"})
     }
 }
 
