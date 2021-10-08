@@ -3,7 +3,9 @@ const cors = require('cors');
 require('dotenv').config();
 const mongoose = require('mongoose');
 const bodyparser = require('body-parser'); 
-const rutasUsuario = require('./router/rutasUsuario')
+const rutasUsuario = require('./router/Usuario')
+const login = require('./router/login')
+const { verificaToken } = require('./controller/validaciones');
 
 const app = express();
 
@@ -38,15 +40,15 @@ async function serverStart() {
 serverStart();
 
 app.use('/', rutasUsuario )
-
+app.use('/', login )
 app.get('/', (req, res) => {
-    res.render("index")
+    res.render("index",{Invalido:"", error:""})
+})
+app.get('/dashboard',verificaToken,  (req, res) => {
+    res.render("dashboard")
 })
 
-// app.use((req, res, next) => {
-//     res.status(404).render("404")
-// })
-//Iniciamos vistas
+
 
 
 
