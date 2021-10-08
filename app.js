@@ -6,11 +6,15 @@ const bodyparser = require('body-parser');
 const rutasUsuario = require('./router/Usuario')
 const login = require('./router/login')
 const { verificaToken } = require('./controller/validaciones');
+const cookieParser = require('cookie-parser')
 
 const app = express();
 
+app.use(cookieParser())
 app.use(express.json())
 app.use(cors());
+// app.use(cookieParser())
+
 
 app.set('view engine','ejs');
 app.set('views', __dirname + '/view');
@@ -44,9 +48,10 @@ app.use('/', login )
 app.get('/', (req, res) => {
     res.render("index",{Invalido:"", error:""})
 })
-app.get('/dashboard',verificaToken,  (req, res) => {
+app.get('/dashboard', verificaToken, async (req, res) => {
     res.render("dashboard",{TituloW:"Dashboard"})
 })
+
 
 
 

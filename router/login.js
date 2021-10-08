@@ -4,9 +4,6 @@ const validacion = require('../controller/validaciones')
 const User = require('../model/Users')
 const router = require('express').Router();
 
-async function redir(){
-    
-}
 
 router.post('/login', async (req, res) => {
 
@@ -23,9 +20,15 @@ router.post('/login', async (req, res) => {
         id: user._id,
         name: user.nombre,
     }, process.env.SECRET_TOKEN)
-        
-    res.redirect(res.setHeader('auth-token', token),"/dashboard")
-//    res.setHeader('auth-token', token).render("dashboard",{TituloW:"Dashboard"})
+    
+    res
+  .status(201)
+  .cookie('access_token', token, {
+    expires: new Date(Date.now() + 8 * 3600000) // cookie will be removed after 8 hours
+  })
+  .cookie('user', user.nombre )
+  .redirect(301, '/dashboard')
    
+  
 })
 module.exports = router
