@@ -22,7 +22,6 @@ const verificaToken = (req, res, next) => {
 }
 
 const schemaRegister = Joi.object({
-    
     nombre: Joi.string().min(6).max(255).required(),
     ap_pat: Joi.string().min(6).max(255).required(),
     ap_mat: Joi.string().min(6).max(255).required(),
