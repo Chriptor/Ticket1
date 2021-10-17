@@ -1,11 +1,12 @@
 <%- include ("templates/head") %>
 <br><br> 
 <div class="container">
+    <a class="btn btn-primary" href="" role="button">Nuevo Usuario</a>
     <table class="tftable" border="1">
         <tr><th>Id Usuario</th><th>Nombre</th><th>Apellido Paterno</th><th>Apellido Materno</th><th>Email</th><th>Editar</th><th>Eliminar</th></tr>
         <% if (arrayUsuario.length > 0) { %>
             <% arrayUsuario.forEach(usuario => { %>
-        <tr><th><%= usuario._id %> </th><th><%= usuario.nombre %></th><th><%= usuario.ap_pat %></th><th><%= usuario.ap_mat %></th><th><%= usuario.email %></th><th>Editar</th><th>Eliminar</th></tr>
+        <tr><td><%= usuario._id %> </td><td><%= usuario.nombre %></td><td><%= usuario.ap_pat %></td><td><%= usuario.ap_mat %></td><td><%= usuario.email %></td><td><a class="btn btn-primary" href="" role="button">Editar</a></td><td><a class="btn btn-primary" href="" role="button">Eliminar</a></td></tr>
             <% }) %>
         <% } %>
     </table>

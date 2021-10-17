@@ -8,8 +8,8 @@ const router = require('express').Router();
 router.post('/login', async (req, res) => {
     let { error } = await login.validate(req.body);
     const user = await User.findOne({ email: req.body.email });
-    const validPassword = await bcrypt.compare(req.body.password, user.password);
-    
+    let validPassword = false
+    if(user){validPassword = await bcrypt.compare(req.body.password, user.password);}    
     if (error) return res.render("index",{Invalido:"", error: error.details[0].message })
     if (!user) return res.render("index",{Invalido: "Usuario o Contraseña invalido", error:""})
     if (!validPassword) return res.render("index",{Invalido: "Usuario o Contraseña invalido", error:""})
