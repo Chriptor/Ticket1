@@ -1,14 +1,12 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
-const validacion = require('../controller/validaciones')
+const login = require('../controller/validaciones').schemaLogin
 const User = require('../model/Users')
 const router = require('express').Router();
 
 
 router.post('/login', async (req, res) => {
-console.log(validacion.schemaLogin);
-console.log(req.body);
-    const { error } = validacion.schemaLogin.validate(req.body);
+    let { error } = await login.validate(req.body);
     const user = await User.findOne({ email: req.body.email });
     const validPassword = await bcrypt.compare(req.body.password, user.password);
     

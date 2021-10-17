@@ -3,8 +3,8 @@ const cors = require('cors');
 require('dotenv').config();
 const mongoose = require('mongoose');
 const bodyparser = require('body-parser'); 
-const rutasUsuario = require('./router/Usuario')
-const login = require('./router/login')
+const rutasUsuario = require('./views/Usuario')
+const login = require('./views/login')
 const { verificaToken } = require('./controller/validaciones');
 const cookieParser = require('cookie-parser')
 

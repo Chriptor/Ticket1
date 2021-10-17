@@ -1,5 +1,14 @@
 <%- include ("templates/head") %>
-
-    
+<br><br> 
+<div class="container">
+    <table class="tftable" border="1">
+        <tr><th>Id Usuario</th><th>Nombre</th><th>Apellido Paterno</th><th>Apellido Materno</th><th>Email</th><th>Editar</th><th>Eliminar</th></tr>
+        <% if (arrayUsuario.length > 0) { %>
+            <% arrayUsuario.forEach(usuario => { %>
+        <tr><th><%= usuario._id %> </th><th><%= usuario.nombre %></th><th><%= usuario.ap_pat %></th><th><%= usuario.ap_mat %></th><th><%= usuario.email %></th><th>Editar</th><th>Eliminar</th></tr>
+            <% }) %>
+        <% } %>
+    </table>
+</div>
 </body>
 </html>

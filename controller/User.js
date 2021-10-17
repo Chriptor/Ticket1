@@ -40,11 +40,7 @@ module.exports.listarUsuario=async()=>{
 
 try {
     const Usuarios = await User.find();
-    console.log(Usuarios)
-    console.log(Usuarios.email)
-    res.render("Usuarios", {
-        arrayUsuarios: Usuarios,  
-    })
+    return Usuarios
 } catch (error) {
     console.log(error)
 }
