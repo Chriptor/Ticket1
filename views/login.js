@@ -21,12 +21,12 @@ router.post('/login', async (req, res) => {
     }, process.env.SECRET_TOKEN)
     
     res
-  .status(201)
-  .cookie('access_token', token, {
-    expires: new Date(Date.now() + 8 * 3600000) // cookie will be removed after 8 hours
-  })
-  .cookie('user', user.nombre )
-  .redirect(301, '/dashboard')
+    .status(201)
+    .cookie('access_token', token, {
+      expires: new Date(Date.now() + 8 * 3600000) // cookie will be removed after 8 hours
+    })
+    .cookie('user', user.nombre )
+    .redirect(301, '/dashboard')
    
   
 })

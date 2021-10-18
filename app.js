@@ -46,10 +46,6 @@ async function serverStart() {
 
 serverStart();
 
-app.use('/',verificaToken, rutasUsuario )
-app.use('/',verificaToken, rutasFlujoEfectivo )
-app.use('/',verificaToken, rutasResumenFinan )
-app.use('/',verificaToken, rutasEdoRes )
 app.use('/', login )
 app.get('/', (req, res) => {
     res.render("index",{Invalido:"", error:""})
@@ -57,9 +53,22 @@ app.get('/', (req, res) => {
 app.get('/dashboard', verificaToken, async (req, res) => {
     res.render("dashboard",{TituloW:"Dashboard"})
 })
+app.get('/salir', async (req, res) => {
+    
+    res
+        .status(201)
+        .cookie('access_token' , {
+          expires: new Date(Date.now() + 8 * 3600000) 
+        })
+        .redirect(301, '/')
+    })
+    app.use('/',verificaToken, rutasUsuario )
+    app.use('/',verificaToken, rutasFlujoEfectivo )
+    app.use('/',verificaToken, rutasResumenFinan )
+    app.use('/',verificaToken, rutasEdoRes )
 
 
 
-
+    
 
 
