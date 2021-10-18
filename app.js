@@ -3,7 +3,10 @@ const cors = require('cors');
 require('dotenv').config();
 const mongoose = require('mongoose');
 const bodyparser = require('body-parser'); 
+const rutasFlujoEfectivo = require('./views/flujoEfec')
+const rutasResumenFinan = require('./views/resfin')
 const rutasUsuario = require('./views/Usuario')
+const rutasEdoRes = require('./views/edoResul')
 const login = require('./views/login')
 const { verificaToken } = require('./controller/validaciones');
 const cookieParser = require('cookie-parser')
@@ -43,7 +46,10 @@ async function serverStart() {
 
 serverStart();
 
-app.use('/', rutasUsuario )
+app.use('/',verificaToken, rutasUsuario )
+app.use('/',verificaToken, rutasFlujoEfectivo )
+app.use('/',verificaToken, rutasResumenFinan )
+app.use('/',verificaToken, rutasEdoRes )
 app.use('/', login )
 app.get('/', (req, res) => {
     res.render("index",{Invalido:"", error:""})
